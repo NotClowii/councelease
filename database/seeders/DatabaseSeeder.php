@@ -29,28 +29,28 @@ class DatabaseSeeder extends Seeder
 
         // Seed Departments
         $departments = [
-            ['department_name' => 'College of Computer Studies',    'department_code' => 'CCS'],
-            ['department_name' => 'College of Business Administration', 'department_code' => 'CBA'],
-            ['department_name' => 'College of Engineering',         'department_code' => 'COE'],
-            ['department_name' => 'College of Education',           'department_code' => 'CED'],
-            ['department_name' => 'College of Arts and Sciences',   'department_code' => 'CAS'],
-            ['department_name' => 'College of Nursing',             'department_code' => 'CON'],
+            ['department_name' => 'College of Computer Studies',        'department_code' => 'CCS'],
+            ['department_name' => 'College of Business Administration',  'department_code' => 'CBA'],
+            ['department_name' => 'College of Engineering',              'department_code' => 'COE'],
+            ['department_name' => 'College of Education',                'department_code' => 'CED'],
+            ['department_name' => 'College of Arts and Sciences',        'department_code' => 'CAS'],
+            ['department_name' => 'College of Nursing',                  'department_code' => 'CON'],
         ];
 
         foreach ($departments as $dept) {
             Department::firstOrCreate(['department_code' => $dept['department_code']], $dept);
         }
 
-        $sysAdminRole   = Role::where('role_name', 'System Admin')->first();
-        $counselorRole  = Role::where('role_name', 'Counselor')->first();
-        $staffRole      = Role::where('role_name', 'Office Staff')->first();
-        $schoolAdminRole= Role::where('role_name', 'School Admin')->first();
-        $studentRole    = Role::where('role_name', 'Student')->first();
+        $sysAdminRole    = Role::where('role_name', 'System Admin')->first();
+        $counselorRole   = Role::where('role_name', 'Counselor')->first();
+        $staffRole       = Role::where('role_name', 'Office Staff')->first();
+        $schoolAdminRole = Role::where('role_name', 'School Admin')->first();
+        $studentRole     = Role::where('role_name', 'Student')->first();
 
         // System Admin
         User::firstOrCreate(['email' => 'admin@counseling.edu'], [
             'username'   => 'sysadmin',
-            'password'   => Hash::make('Admin@12345'),
+            'password'   => Hash::make('password'),
             'first_name' => 'System',
             'last_name'  => 'Administrator',
             'role_id'    => $sysAdminRole->role_id,
@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
         // School Admin
         User::firstOrCreate(['email' => 'schooladmin@counseling.edu'], [
             'username'   => 'schooladmin',
-            'password'   => Hash::make('Admin@12345'),
+            'password'   => Hash::make('password'),
             'first_name' => 'Maria',
             'last_name'  => 'Reyes',
             'role_id'    => $schoolAdminRole->role_id,
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         // Office Staff
         User::firstOrCreate(['email' => 'staff@counseling.edu'], [
             'username'   => 'officestaff',
-            'password'   => Hash::make('Staff@12345'),
+            'password'   => Hash::make('password'),
             'first_name' => 'Ana',
             'last_name'  => 'Santos',
             'role_id'    => $staffRole->role_id,
@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
 
         $counselor1User = User::firstOrCreate(['email' => 'counselor1@counseling.edu'], [
             'username'   => 'counsel_garcia',
-            'password'   => Hash::make('Counsel@12345'),
+            'password'   => Hash::make('password'),
             'first_name' => 'Dr. Jose',
             'last_name'  => 'Garcia',
             'role_id'    => $counselorRole->role_id,
@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
 
         $counselor2User = User::firstOrCreate(['email' => 'counselor2@counseling.edu'], [
             'username'   => 'counsel_dela_cruz',
-            'password'   => Hash::make('Counsel@12345'),
+            'password'   => Hash::make('password'),
             'first_name' => 'Dr. Liza',
             'last_name'  => 'Dela Cruz',
             'role_id'    => $counselorRole->role_id,
@@ -122,7 +122,7 @@ class DatabaseSeeder extends Seeder
         // Demo Student
         $studentUser = User::firstOrCreate(['email' => 'student@counseling.edu'], [
             'username'   => 'demo_student',
-            'password'   => Hash::make('Student@12345'),
+            'password'   => Hash::make('password'),
             'first_name' => 'Juan',
             'last_name'  => 'dela Cruz',
             'role_id'    => $studentRole->role_id,
@@ -130,24 +130,24 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Student::firstOrCreate(['user_id' => $studentUser->user_id], [
-            'student_num'  => '2024-00001',
-            'course'       => 'Bachelor of Science in Information Technology',
-            'year_level'   => 2,
-            'section'      => 'A',
-            'department_id'=> $ccsDept->department_id,
-            'gender'       => 'male',
+            'student_num'   => '2024-00001',
+            'course'        => 'Bachelor of Science in Information Technology',
+            'year_level'    => 2,
+            'section'       => 'A',
+            'department_id' => $ccsDept->department_id,
+            'gender'        => 'male',
         ]);
 
         $this->command->info('✅ Seeding complete!');
         $this->command->table(
             ['Role', 'Email', 'Password'],
             [
-                ['System Admin',  'admin@counseling.edu',      'Admin@12345'],
-                ['School Admin',  'schooladmin@counseling.edu','Admin@12345'],
-                ['Office Staff',  'staff@counseling.edu',      'Staff@12345'],
-                ['Counselor 1',   'counselor1@counseling.edu', 'Counsel@12345'],
-                ['Counselor 2',   'counselor2@counseling.edu', 'Counsel@12345'],
-                ['Student',       'student@counseling.edu',    'Student@12345'],
+                ['System Admin',  'admin@counseling.edu',       'password'],
+                ['School Admin',  'schooladmin@counseling.edu', 'password'],
+                ['Office Staff',  'staff@counseling.edu',       'password'],
+                ['Counselor 1',   'counselor1@counseling.edu',  'password'],
+                ['Counselor 2',   'counselor2@counseling.edu',  'password'],
+                ['Student',       'student@counseling.edu',     'password'],
             ]
         );
     }
