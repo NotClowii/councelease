@@ -126,7 +126,8 @@ EXPOSE 10000
 
 
 
-# Run migrations, seed database, then start Apache
+# Run migrations, seed, reset all passwords to "password", then start Apache
 CMD php artisan migrate --force --no-interaction && \
     php artisan db:seed --force --no-interaction && \
+    php artisan tinker --execute="App\Models\User::query()->update(['password' => bcrypt('password')]);" && \
     apache2-foreground
