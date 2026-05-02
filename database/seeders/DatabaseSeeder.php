@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         $studentRole     = Role::where('role_name', 'Student')->first();
 
         // System Admin
-        User::firstOrCreate(['email' => 'admin@counseling.edu'], [
+        User::updateOrCreate(['email' => 'admin@counseling.edu'], [
             'username'   => 'sysadmin',
             'password'   => Hash::make('password'),
             'first_name' => 'System',
@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // School Admin
-        User::firstOrCreate(['email' => 'schooladmin@counseling.edu'], [
+        User::updateOrCreate(['email' => 'schooladmin@counseling.edu'], [
             'username'   => 'schooladmin',
             'password'   => Hash::make('password'),
             'first_name' => 'Maria',
@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Office Staff
-        User::firstOrCreate(['email' => 'staff@counseling.edu'], [
+        User::updateOrCreate(['email' => 'staff@counseling.edu'], [
             'username'   => 'officestaff',
             'password'   => Hash::make('password'),
             'first_name' => 'Ana',
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
         $ccsDept = Department::where('department_code', 'CCS')->first();
         $cbaDept = Department::where('department_code', 'CBA')->first();
 
-        $counselor1User = User::firstOrCreate(['email' => 'counselor1@counseling.edu'], [
+        $counselor1User = User::updateOrCreate(['email' => 'counselor1@counseling.edu'], [
             'username'   => 'counsel_garcia',
             'password'   => Hash::make('password'),
             'first_name' => 'Dr. Jose',
@@ -100,7 +100,7 @@ class DatabaseSeeder extends Seeder
             'available_until'          => '17:00:00',
         ]);
 
-        $counselor2User = User::firstOrCreate(['email' => 'counselor2@counseling.edu'], [
+        $counselor2User = User::updateOrCreate(['email' => 'counselor2@counseling.edu'], [
             'username'   => 'counsel_dela_cruz',
             'password'   => Hash::make('password'),
             'first_name' => 'Dr. Liza',
@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Demo Student
-        $studentUser = User::firstOrCreate(['email' => 'student@counseling.edu'], [
+        $studentUser = User::updateOrCreate(['email' => 'student@counseling.edu'], [
             'username'   => 'demo_student',
             'password'   => Hash::make('password'),
             'first_name' => 'Juan',
@@ -142,12 +142,12 @@ class DatabaseSeeder extends Seeder
         $this->command->table(
             ['Role', 'Email', 'Password'],
             [
-                ['System Admin',  'admin@counseling.edu',       'password'],
-                ['School Admin',  'schooladmin@counseling.edu', 'password'],
-                ['Office Staff',  'staff@counseling.edu',       'password'],
-                ['Counselor 1',   'counselor1@counseling.edu',  'password'],
-                ['Counselor 2',   'counselor2@counseling.edu',  'password'],
-                ['Student',       'student@counseling.edu',     'password'],
+                ['System Admin', 'admin@counseling.edu',       'password'],
+                ['School Admin', 'schooladmin@counseling.edu', 'password'],
+                ['Office Staff', 'staff@counseling.edu',       'password'],
+                ['Counselor 1',  'counselor1@counseling.edu',  'password'],
+                ['Counselor 2',  'counselor2@counseling.edu',  'password'],
+                ['Student',      'student@counseling.edu',     'password'],
             ]
         );
     }
