@@ -126,4 +126,7 @@ EXPOSE 10000
 
 
 
-CMD ["apache2-foreground"]
+# Run migrations, seed database, then start Apache
+CMD php artisan migrate --force --no-interaction && \
+    php artisan db:seed --force --no-interaction && \
+    apache2-foreground
