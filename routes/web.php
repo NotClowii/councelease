@@ -53,6 +53,13 @@ Route::middleware(['auth'])->group(function () {
         return view('settings.index');
     })->name('settings.index');
 
+    // User Management
+    Route::get('users', function () {
+    if (!auth()->user()->isSystemAdmin()) abort(403);
+    $users = \App\Models\User::with('role')->orderBy('created_at','desc')->paginate(20);
+    return view('users.index', compact('users'));
+    })->name('users.index');
+
     // Notifications
     Route::post('notifications/{notif}/read', function (\App\Models\Notification $notif) {
         if ($notif->user_id === auth()->id()) {

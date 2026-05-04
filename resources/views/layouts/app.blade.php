@@ -651,9 +651,9 @@
             <i class="ph-bold ph-gear"></i>
             Settings
         </a>
-        <a href="#" class="nav-item">
-            <i class="ph-bold ph-users"></i>
-            User Management
+        <a href="{{ route('users.index') }}" class="nav-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
+         <i class="ph-bold ph-users"></i>
+         User Management
         </a>
         @endif
     </nav>
