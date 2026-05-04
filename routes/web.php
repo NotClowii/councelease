@@ -6,6 +6,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CaseNoteController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CounselorController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::middleware(['auth'])->group(function () {
     // Students
     Route::resource('students', StudentController::class)->except(['destroy']);
 
+    // Counselors
+    Route::resource('counselors', CounselorController::class)->except(['destroy']);
+
     // Appointments
     Route::resource('appointments', AppointmentController::class)->except(['edit', 'update', 'destroy']);
     Route::post('appointments/{appointment}/approve', [AppointmentController::class, 'approve'])->name('appointments.approve');
@@ -36,14 +40,20 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('sessions', SessionController::class)->only(['index', 'show']);
     Route::post('sessions/{session}/complete', [SessionController::class, 'complete'])->name('sessions.complete');
 
-    // Case Notes (confidential)
+    // Case Notes
     Route::resource('case-notes', CaseNoteController::class)->except(['destroy']);
 
     // Reports
     Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
     Route::post('reports/generate', [ReportController::class, 'generate'])->name('reports.generate');
 
-    // Notifications (AJAX)
+    // Settings
+    Route::get('settings', function () {
+        if (!auth()->user()->isSystemAdmin()) abort(403);
+        return view('settings.index');
+    })->name('settings.index');
+
+    // Notifications
     Route::post('notifications/{notif}/read', function (\App\Models\Notification $notif) {
         if ($notif->user_id === auth()->id()) {
             $notif->markAsRead();
