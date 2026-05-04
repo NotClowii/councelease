@@ -60,7 +60,6 @@
             display: flex;
         }
 
-        /* ─── SIDEBAR ─────────────────────────────────────── */
         .sidebar {
             width: var(--sidebar-width);
             min-height: 100vh;
@@ -126,17 +125,8 @@
             position: relative;
         }
 
-        .nav-item:hover {
-            background: rgba(255,255,255,.08);
-            color: white;
-        }
-
-        .nav-item.active {
-            background: var(--primary-light);
-            color: white;
-            font-weight: 600;
-        }
-
+        .nav-item:hover { background: rgba(255,255,255,.08); color: white; }
+        .nav-item.active { background: var(--primary-light); color: white; font-weight: 600; }
         .nav-item i { font-size: 18px; flex-shrink: 0; }
 
         .nav-badge {
@@ -180,7 +170,6 @@
         }
         .logout-btn:hover { color: #fc8181; background: rgba(255,255,255,.08); }
 
-        /* ─── MAIN CONTENT ──────────────────────────────────── */
         .main-wrapper {
             margin-left: var(--sidebar-width);
             flex: 1;
@@ -189,7 +178,6 @@
             min-height: 100vh;
         }
 
-        /* ─── TOP HEADER ──────────────────────────────────── */
         .topbar {
             height: var(--header-height);
             background: var(--white);
@@ -205,7 +193,6 @@
         .topbar-left { display: flex; align-items: center; gap: 16px; }
         .topbar-title { font-size: 17px; font-weight: 700; color: var(--text-primary); letter-spacing: -.3px; }
         .topbar-breadcrumb { font-size: 12px; color: var(--text-muted); }
-
         .topbar-right { display: flex; align-items: center; gap: 8px; }
 
         .topbar-btn {
@@ -220,7 +207,6 @@
             position: relative;
             text-decoration: none;
         }
-
         .topbar-btn:hover { background: var(--surface-2); border-color: var(--border); color: var(--primary); }
 
         .notif-badge {
@@ -231,7 +217,6 @@
             border: 2px solid white;
         }
 
-        /* Notification dropdown */
         .notif-dropdown {
             position: absolute; top: 44px; right: 0;
             width: 340px;
@@ -270,13 +255,8 @@
         .notif-time  { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
         .notif-empty { padding: 24px; text-align: center; color: var(--text-muted); font-size: 13px; }
 
-        /* ─── PAGE CONTENT ──────────────────────────────────── */
-        .page-content {
-            flex: 1;
-            padding: 28px;
-        }
+        .page-content { flex: 1; padding: 28px; }
 
-        /* ─── ALERTS ─────────────────────────────────────────── */
         .alert {
             padding: 12px 16px;
             border-radius: var(--radius);
@@ -291,38 +271,27 @@
         .alert-warning { background: var(--warning-light); border-color: #FAF089; color: #744210; }
         .alert-info    { background: var(--info-light);    border-color: #90CDF4; color: #2A4365; }
 
-        /* ─── CARDS ────────────────────────────────────────────── */
         .card {
             background: var(--white);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-sm);
         }
-
         .card-header {
             padding: 18px 22px 14px;
             border-bottom: 1px solid var(--border-light);
             display: flex; align-items: center; justify-content: space-between;
             gap: 12px;
         }
-
-        .card-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -.2px;
-        }
-
+        .card-title { font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -.2px; }
         .card-body { padding: 22px; }
 
-        /* ─── STAT CARDS ───────────────────────────────────────── */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
             margin-bottom: 24px;
         }
-
         .stat-card {
             background: var(--white);
             border: 1px solid var(--border-light);
@@ -333,61 +302,40 @@
             transition: var(--transition);
         }
         .stat-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
-
         .stat-icon {
             width: 44px; height: 44px;
             border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 22px;
-            flex-shrink: 0;
+            font-size: 22px; flex-shrink: 0;
         }
         .stat-icon.green  { background: var(--success-light); color: var(--success); }
         .stat-icon.blue   { background: var(--info-light); color: var(--info); }
         .stat-icon.amber  { background: var(--warning-light); color: var(--warning); }
         .stat-icon.teal   { background: var(--surface-3); color: var(--primary); }
-
         .stat-info { flex: 1; }
         .stat-value { font-size: 26px; font-weight: 700; color: var(--text-primary); line-height: 1; }
         .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
 
-        /* ─── TABLES ────────────────────────────────────────────── */
         .table-wrap { overflow-x: auto; }
-
         table { width: 100%; border-collapse: collapse; }
-
         thead th {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: .6px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            padding: 10px 16px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-light);
-            white-space: nowrap;
+            font-size: 11px; font-weight: 600; letter-spacing: .6px;
+            text-transform: uppercase; color: var(--text-muted);
+            padding: 10px 16px; text-align: left;
+            border-bottom: 1px solid var(--border-light); white-space: nowrap;
         }
-
         tbody td {
-            padding: 12px 16px;
-            font-size: 13.5px;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--border-light);
-            vertical-align: middle;
+            padding: 12px 16px; font-size: 13.5px; color: var(--text-primary);
+            border-bottom: 1px solid var(--border-light); vertical-align: middle;
         }
-
         tbody tr:last-child td { border-bottom: none; }
         tbody tr:hover td { background: var(--surface); }
 
-        /* ─── BADGES ───────────────────────────────────────────── */
         .badge {
             display: inline-flex; align-items: center; gap: 4px;
-            padding: 3px 10px;
-            border-radius: 100px;
-            font-size: 11.5px;
-            font-weight: 600;
-            white-space: nowrap;
+            padding: 3px 10px; border-radius: 100px;
+            font-size: 11.5px; font-weight: 600; white-space: nowrap;
         }
-
         .badge-success  { background: var(--success-light); color: var(--success); }
         .badge-danger   { background: var(--danger-light);  color: var(--danger); }
         .badge-warning  { background: var(--warning-light); color: var(--warning); }
@@ -395,115 +343,52 @@
         .badge-secondary{ background: var(--surface-2);     color: var(--text-secondary); }
         .badge-primary  { background: #EBF4FF;              color: #2B6CB0; }
 
-        /* ─── BUTTONS ───────────────────────────────────────────── */
         .btn {
             display: inline-flex; align-items: center; gap: 6px;
-            padding: 9px 18px;
-            border-radius: 8px;
-            font-size: 13.5px;
-            font-weight: 600;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: var(--transition);
-            text-decoration: none;
-            white-space: nowrap;
-            font-family: inherit;
+            padding: 9px 18px; border-radius: 8px; font-size: 13.5px;
+            font-weight: 600; cursor: pointer; border: 1px solid transparent;
+            transition: var(--transition); text-decoration: none;
+            white-space: nowrap; font-family: inherit;
         }
-
         .btn i { font-size: 16px; }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
+        .btn-primary { background: var(--primary); color: white; border-color: var(--primary); }
         .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text-secondary);
-            border-color: var(--border);
-        }
+        .btn-outline { background: transparent; color: var(--text-secondary); border-color: var(--border); }
         .btn-outline:hover { background: var(--surface-2); color: var(--text-primary); }
-
         .btn-success { background: var(--success); color: white; border-color: var(--success); }
         .btn-success:hover { background: #2F855A; }
-
         .btn-danger  { background: var(--danger); color: white; border-color: var(--danger); }
         .btn-danger:hover  { background: #C53030; }
-
         .btn-warning { background: var(--warning); color: white; border-color: var(--warning); }
-
         .btn-sm { padding: 6px 12px; font-size: 12px; }
         .btn-sm i { font-size: 14px; }
+        .btn-icon { width: 34px; height: 34px; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
 
-        .btn-icon {
-            width: 34px; height: 34px; padding: 0;
-            display: inline-flex; align-items: center; justify-content: center;
-        }
-
-        /* ─── FORMS ─────────────────────────────────────────────── */
         .form-group { margin-bottom: 18px; }
-
-        label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
+        label { display: block; font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
         .form-control {
-            width: 100%;
-            padding: 9px 13px;
-            border: 1.5px solid var(--border);
-            border-radius: 8px;
-            font-size: 13.5px;
-            color: var(--text-primary);
-            background: var(--white);
-            transition: var(--transition);
-            font-family: inherit;
-            outline: none;
+            width: 100%; padding: 9px 13px;
+            border: 1.5px solid var(--border); border-radius: 8px;
+            font-size: 13.5px; color: var(--text-primary);
+            background: var(--white); transition: var(--transition);
+            font-family: inherit; outline: none;
         }
-
-        .form-control:focus {
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(82,183,136,.15);
-        }
-
+        .form-control:focus { border-color: var(--primary-light); box-shadow: 0 0 0 3px rgba(82,183,136,.15); }
         textarea.form-control { resize: vertical; min-height: 100px; }
-
         .form-hint { font-size: 12px; color: var(--text-muted); margin-top: 5px; }
-
-        .field-error {
-            font-size: 12px;
-            color: var(--danger);
-            margin-top: 5px;
-            display: flex; align-items: center; gap: 4px;
-        }
-
+        .field-error { font-size: 12px; color: var(--danger); margin-top: 5px; display: flex; align-items: center; gap: 4px; }
         .form-control.is-invalid { border-color: var(--danger); }
 
-        /* ─── PAGINATION ────────────────────────────────────── */
         .pagination { display: flex; align-items: center; gap: 4px; }
         .pagination a, .pagination span {
-            padding: 6px 11px;
-            border-radius: 7px;
-            font-size: 13px;
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--text-secondary);
-            border: 1px solid transparent;
-            transition: var(--transition);
+            padding: 6px 11px; border-radius: 7px; font-size: 13px;
+            font-weight: 500; text-decoration: none; color: var(--text-secondary);
+            border: 1px solid transparent; transition: var(--transition);
         }
         .pagination a:hover { background: var(--surface-2); }
-        .pagination .active span {
-            background: var(--primary);
-            color: white;
-        }
+        .pagination .active span { background: var(--primary); color: white; }
         .pagination [disabled] span { color: var(--text-muted); }
 
-        /* ─── UTILS ─────────────────────────────────────────── */
         .flex         { display: flex; }
         .items-center { align-items: center; }
         .justify-between { justify-content: space-between; }
@@ -520,38 +405,26 @@
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 
-        /* Avatar initials */
         .avatar {
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            background: var(--primary-light);
-            color: white;
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--primary-light); color: white;
             display: inline-flex; align-items: center; justify-content: center;
-            font-size: 12px; font-weight: 700;
-            flex-shrink: 0;
+            font-size: 12px; font-weight: 700; flex-shrink: 0;
         }
         .avatar.lg { width: 48px; height: 48px; font-size: 16px; }
 
-        /* Empty state */
-        .empty-state {
-            text-align: center;
-            padding: 48px 24px;
-            color: var(--text-muted);
-        }
+        .empty-state { text-align: center; padding: 48px 24px; color: var(--text-muted); }
         .empty-state i   { font-size: 48px; display: block; margin-bottom: 12px; color: var(--border); }
         .empty-state h3  { font-size: 15px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
         .empty-state p   { font-size: 13px; }
 
-        /* Filter bar */
         .filter-bar {
             display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-            padding: 14px 18px;
-            background: var(--surface);
+            padding: 14px 18px; background: var(--surface);
             border-bottom: 1px solid var(--border-light);
         }
         .filter-bar .form-control { width: auto; }
 
-        /* Page header */
         .page-header {
             display: flex; align-items: flex-start; justify-content: space-between;
             margin-bottom: 24px; gap: 16px; flex-wrap: wrap;
@@ -559,14 +432,11 @@
         .page-header h1 { font-size: 22px; font-weight: 700; letter-spacing: -.4px; color: var(--text-primary); }
         .page-header p  { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 
-        /* Divider */
         .divider { border: none; border-top: 1px solid var(--border-light); margin: 18px 0; }
 
-        /* Detail list */
         .detail-list dt { font-size: 11.5px; font-weight: 600; letter-spacing: .4px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
         .detail-list dd { font-size: 14px; color: var(--text-primary); margin-bottom: 14px; }
 
-        /* Timeline */
         .timeline { position: relative; padding-left: 24px; }
         .timeline::before { content: ''; position: absolute; left: 7px; top: 4px; bottom: 4px; width: 2px; background: var(--border-light); }
         .timeline-item { position: relative; margin-bottom: 18px; }
@@ -580,7 +450,6 @@
 </head>
 <body>
 
-{{-- SIDEBAR --}}
 <aside class="sidebar">
     <a href="{{ route('dashboard') }}" class="sidebar-logo">
         <div class="sidebar-logo-icon">
@@ -608,7 +477,7 @@
         @endif
 
         @if(auth()->user()->isSystemAdmin() || auth()->user()->isSchoolAdmin() || auth()->user()->isOfficeStaff())
-        <a href="#" class="nav-item {{ request()->routeIs('counselors.*') ? 'active' : '' }}">
+        <a href="{{ route('counselors.index') }}" class="nav-item {{ request()->routeIs('counselors.*') ? 'active' : '' }}">
             <i class="ph-bold ph-users-three"></i>
             Counselors
         </a>
@@ -647,13 +516,13 @@
 
         @if(auth()->user()->isSystemAdmin())
         <span class="nav-section-label">System</span>
-        <a href="#" class="nav-item">
+        <a href="{{ route('settings.index') }}" class="nav-item {{ request()->routeIs('settings.*') ? 'active' : '' }}">
             <i class="ph-bold ph-gear"></i>
             Settings
         </a>
         <a href="{{ route('users.index') }}" class="nav-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
-         <i class="ph-bold ph-users"></i>
-         User Management
+            <i class="ph-bold ph-users"></i>
+            User Management
         </a>
         @endif
     </nav>
@@ -673,9 +542,7 @@
     </div>
 </aside>
 
-{{-- MAIN --}}
 <div class="main-wrapper">
-    {{-- TOPBAR --}}
     <header class="topbar">
         <div class="topbar-left">
             <div>
@@ -686,14 +553,12 @@
             </div>
         </div>
         <div class="topbar-right">
-            {{-- Notifications --}}
             @php $unreadCount = auth()->user()->unreadNotifications()->count(); @endphp
             <div style="position:relative;">
                 <button class="topbar-btn" id="notifToggle" title="Notifications">
                     <i class="ph-bold ph-bell"></i>
                     @if($unreadCount > 0) <span class="notif-badge"></span> @endif
                 </button>
-
                 <div class="notif-dropdown" id="notifDropdown">
                     <div class="notif-header">
                         <h4>Notifications @if($unreadCount > 0) <span class="badge badge-danger" style="font-size:10px;padding:1px 7px;">{{ $unreadCount }}</span> @endif</h4>
@@ -722,17 +587,13 @@
                     </div>
                 </div>
             </div>
-
-            {{-- Profile link --}}
             <a href="#" class="topbar-btn" title="My Profile">
                 <i class="ph-bold ph-user-circle"></i>
             </a>
         </div>
     </header>
 
-    {{-- PAGE CONTENT --}}
     <main class="page-content">
-        {{-- Flash Messages --}}
         @if(session('success'))
         <div class="alert alert-success">
             <i class="ph-bold ph-check-circle"></i>
@@ -766,7 +627,6 @@
 </div>
 
 <script>
-// Notification dropdown
 const notifToggle = document.getElementById('notifToggle');
 const notifDropdown = document.getElementById('notifDropdown');
 
