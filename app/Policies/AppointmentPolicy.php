@@ -13,8 +13,7 @@ class AppointmentPolicy
 
     public function approve(User $user, Appointment $appointment): bool
     {
-        // Counselors, office staff, and admins can approve
-        return $user->isCounselor() || $user->isOfficeStaff() || $user->isSystemAdmin();
+        return $user->isCounselor()&& $user->counselor?->counselor_id === $appointment->counselor_id;
     }
 
     public function cancel(User $user, Appointment $appointment): bool

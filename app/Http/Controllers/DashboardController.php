@@ -59,6 +59,11 @@ class DashboardController extends Controller
                     ->with('student.user')
                     ->orderByDesc('session_datetime')
                     ->take(5)->get() : collect(),
+                'pending_appointments' => $counselor ? $counselor->appointments()
+                    ->where('appointment_status', 'pending')
+                    ->with('student.user')
+                    ->orderBy('appointment_datetime')
+                    ->get() : collect(),
             ];
 
         } else {

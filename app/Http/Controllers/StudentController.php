@@ -170,4 +170,41 @@ class StudentController extends Controller
 
         return redirect()->route('students.show', $student)->with('success', 'Student profile updated successfully.');
     }
+
+        
+    public function search(Request $request)
+    {
+        $q    = $request->input('q', '');
+        $byId = $request->boolean('by_id');
+    
+        $query = \App\Models\Student::with(['user', 'department'])
+            ->whereHas('user', fn ($u) => $u->where('is_active', true));
+    
+        if ($byId) {
+            // Restore a specific student by student_id (used to re-hydrate old() value)
+            $query->where('student_id', (int) $q);
+        } else {
+            $query->where(function ($q2) use ($q) {
+                $q2->where('student_num', 'like', "%{$q}%")
+                ->orWhereHas('user', fn ($u) =>
+                        $u->where(DB::raw("CONCAT(first_name, ' ', last_name)"), 'like', "%{$q}%")
+                        ->orWhere('first_name', 'like', "%{$q}%")
+                        ->orWhere('last_name',  'like', "%{$q}%")
+                );
+            });
+        }
+    
+        $students = $query->limit(10)->get()->map(fn ($s) => [
+            'student_id'  => $s->student_id,
+            'student_num' => $s->student_num,
+            'first_name'  => $s->user->first_name,
+            'last_name'   => $s->user->last_name,
+            'full_name'   => $s->user->full_name,
+            'initials'    => $s->user->initials,
+            'department'  => $s->department?->dept_name ?? '',
+        ]);
+    
+        return response()->json(['students' => $students]);
+    }
+ 
 }

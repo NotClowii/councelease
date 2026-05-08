@@ -124,8 +124,7 @@
                                 <i class="ph-bold ph-eye"></i>
                             </a>
 
-                            @if($appt->isPending() && (auth()->user()->isCounselor() || auth()->user()->isOfficeStaff() || auth()->user()->isSystemAdmin()))
-                            <form method="POST" action="{{ route('appointments.approve', $appt) }}">
+                            @if($appt->isPending() && auth()->user()->isCounselor())                            <form method="POST" action="{{ route('appointments.approve', $appt) }}">
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-sm btn-icon" title="Approve">
                                     <i class="ph-bold ph-check"></i>

@@ -24,6 +24,16 @@ Route::middleware(['auth'])->group(function () {
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    // ── Custom routes MUST come before resource routes ──────────────────────
+    // Appointment: booked slots API (time slot picker)
+    Route::get('appointments/booked-slots', [AppointmentController::class, 'bookedSlots'])
+        ->name('appointments.booked-slots');
+
+    // Student: search API (for staff/counselors booking on behalf of a student)
+    Route::get('students/search', [StudentController::class, 'search'])
+        ->name('students.search');
+    // ────────────────────────────────────────────────────────────────────────
+
     // Students
     Route::resource('students', StudentController::class)->except(['destroy']);
 
@@ -55,9 +65,9 @@ Route::middleware(['auth'])->group(function () {
 
     // User Management
     Route::get('users', function () {
-    if (!auth()->user()->isSystemAdmin()) abort(403);
-    $users = \App\Models\User::with('role')->orderBy('created_at','desc')->paginate(20);
-    return view('users.index', compact('users'));
+        if (!auth()->user()->isSystemAdmin()) abort(403);
+        $users = \App\Models\User::with('role')->orderBy('created_at', 'desc')->paginate(20);
+        return view('users.index', compact('users'));
     })->name('users.index');
 
     // Notifications
@@ -72,4 +82,5 @@ Route::middleware(['auth'])->group(function () {
         auth()->user()->unreadNotifications()->update(['is_read' => true, 'read_at' => now()]);
         return response()->json(['success' => true]);
     })->name('notifications.read-all');
+
 });

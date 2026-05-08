@@ -112,6 +112,7 @@
         @endif
     </div>
 
+    
     {{-- Past Sessions --}}
     <div class="card">
         <div class="card-header">
@@ -182,6 +183,8 @@
 </div>
 
 <div class="grid-2" style="gap:20px;">
+
+    {{-- Today's Schedule --}}
     <div class="card">
         <div class="card-header">
             <span class="card-title">Today's Schedule</span>
@@ -196,7 +199,15 @@
         @else
         <div class="table-wrap">
             <table>
-                <thead><tr><th>Student</th><th>Time</th><th>Concern</th><th>Status</th><th></th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Time</th>
+                        <th>Concern</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
                 <tbody>
                     @foreach($data['todays_appointments'] as $appt)
                     <tr>
@@ -229,6 +240,65 @@
         @endif
     </div>
 
+    {{-- Pending Approvals --}}
+    @if($data['pending_appointments']->isNotEmpty())
+    <div class="card">
+        <div class="card-header">
+            <span class="card-title">Pending Approvals</span>
+            <span class="badge badge-warning">{{ $data['pending_appointments']->count() }}</span>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Date & Time</th>
+                        <th>Concern</th>
+                        <th>Booked On</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($data['pending_appointments'] as $appt)
+                    <tr>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <div class="avatar">{{ $appt->student->user->initials }}</div>
+                                <div>
+                                    <div class="font-semibold">{{ $appt->student->user->full_name }}</div>
+                                    <div class="text-sm text-muted">{{ $appt->student->student_num }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="font-semibold">{{ $appt->appointment_datetime->format('M d, Y') }}</div>
+                            <div class="text-sm text-muted">{{ $appt->appointment_datetime->format('h:i A') }}</div>
+                        </td>
+                        <td>{{ $appt->concern_type ?? '—' }}</td>
+                        <td class="text-sm text-muted">{{ $appt->created_at->format('M d, Y') }}</td>
+                        <td>
+                            <div class="flex gap-2">
+                                <a href="{{ route('appointments.show', $appt) }}"
+                                   class="btn btn-outline btn-sm btn-icon" title="View">
+                                    <i class="ph-bold ph-eye"></i>
+                                </a>
+                                <form method="POST" action="{{ route('appointments.approve', $appt) }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success btn-sm btn-icon" title="Approve">
+                                        <i class="ph-bold ph-check"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @endif
+
+    {{-- Recent Sessions --}}
     <div class="card">
         <div class="card-header">
             <span class="card-title">Recent Sessions</span>
@@ -242,7 +312,13 @@
         @else
         <div class="table-wrap">
             <table>
-                <thead><tr><th>Student</th><th>Date</th><th>Status</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
                 <tbody>
                     @foreach($data['recent_sessions'] as $session)
                     <tr>
@@ -253,7 +329,11 @@
                             </div>
                         </td>
                         <td>{{ $session->session_datetime->format('M d, Y') }}</td>
-                        <td><span class="badge badge-{{ $session->session_status === 'completed' ? 'success' : 'info' }}">{{ ucfirst($session->session_status) }}</span></td>
+                        <td>
+                            <span class="badge badge-{{ $session->session_status === 'completed' ? 'success' : 'info' }}">
+                                {{ ucfirst($session->session_status) }}
+                            </span>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -261,8 +341,8 @@
         </div>
         @endif
     </div>
-</div>
 
+</div>
 {{-- ─── ADMIN / STAFF DASHBOARD ─── --}}
 @else
 <div class="stats-grid">
