@@ -180,25 +180,6 @@
         }
         .btn-login:hover { background: #245A41; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(45,106,79,.3); }
 
-        .demo-accounts {
-            margin-top: 28px;
-            padding: 16px;
-            background: #F0FFF4;
-            border: 1px solid #9AE6B4;
-            border-radius: 9px;
-        }
-        .demo-accounts h4 { font-size: 12px; font-weight: 700; color: #276749; letter-spacing: .4px; text-transform: uppercase; margin-bottom: 10px; }
-
-        .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-        .demo-item {
-            background: white; border: 1px solid #C6F6D5; border-radius: 7px;
-            padding: 8px 10px; cursor: pointer;
-            transition: all .2s;
-        }
-        .demo-item:hover { background: #E6FFED; transform: translateY(-1px); }
-        .demo-role { font-size: 11px; font-weight: 700; color: #276749; }
-        .demo-cred { font-size: 11px; color: #4A9E6A; margin-top: 2px; }
-
         .alert {
             padding: 11px 14px;
             border-radius: 8px;
@@ -314,28 +295,6 @@
                 Sign In
             </button>
         </form>
-
-        <div class="demo-accounts">
-            <h4>🔑 Demo Accounts</h4>
-            <div class="demo-grid">
-                <div class="demo-item" onclick="fillCreds('admin@counseling.edu','Admin@12345')">
-                    <div class="demo-role">System Admin</div>
-                    <div class="demo-cred">admin@counseling.edu</div>
-                </div>
-                <div class="demo-item" onclick="fillCreds('counselor1@counseling.edu','Counsel@12345')">
-                    <div class="demo-role">Counselor</div>
-                    <div class="demo-cred">counselor1@...</div>
-                </div>
-                <div class="demo-item" onclick="fillCreds('staff@counseling.edu','Staff@12345')">
-                    <div class="demo-role">Office Staff</div>
-                    <div class="demo-cred">staff@counseling.edu</div>
-                </div>
-                <div class="demo-item" onclick="fillCreds('student@counseling.edu','Student@12345')">
-                    <div class="demo-role">Student</div>
-                    <div class="demo-cred">student@counseling.edu</div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -350,11 +309,6 @@ function togglePw() {
         input.type = 'password';
         icon.className = 'ph-bold ph-eye';
     }
-}
-
-function fillCreds(email, password) {
-    document.getElementById('email').value = email;
-    document.getElementById('password').value = password;
 }
 </script>
 </body>

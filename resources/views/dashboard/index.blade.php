@@ -14,10 +14,15 @@
         <i class="ph-bold ph-plus"></i>
         Book Appointment
     </a>
-    @elseif(auth()->user()->isCounselor() || auth()->user()->isOfficeStaff() || auth()->user()->isSystemAdmin())
+   @elseif(auth()->user()->isCounselor() || auth()->user()->isSystemAdmin())
     <a href="{{ route('appointments.index') }}?status=pending" class="btn btn-primary">
         <i class="ph-bold ph-calendar-check"></i>
         View Pending
+    </a>
+    @elseif(auth()->user()->isOfficeStaff())
+    <a href="{{ route('appointments.create') }}" class="btn btn-primary">
+        <i class="ph-bold ph-plus"></i>
+        Book Appointment
     </a>
     @endif
 </div>
